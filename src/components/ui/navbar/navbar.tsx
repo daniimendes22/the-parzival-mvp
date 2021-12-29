@@ -10,9 +10,30 @@ import {
     VisuallyHidden, VStack
 } from "@chakra-ui/react";
 import { AiOutlineMenu } from "react-icons/ai";
+import { useEffect, useState } from "react";
+import wallet_model from '../../../pages/models/wallet_model';
 
 
 export const Navbar = () => {
+    const { web3Loading, getweb3 } = wallet_model();
+    const [myWeb3, setMyWeb3] = useState();
+    async function connectWallet() {
+        await getweb3().then((response) => {
+            setMyWeb3(response);
+            response.eth.getAccounts().then(async (result) => (
+                await fetch('/api/dbSaveUserWalletAPI', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(result[0]),
+                })
+            ));
+        });
+    };
+    async function disconnectWallet() {
+        setMyWeb3(undefined); console.log("result")
+    };
     const bg = useColorModeValue("white", "gray.800");
     const mobileNav = useDisclosure();
     return (
@@ -49,9 +70,9 @@ export const Navbar = () => {
                         <Button variant="ghost">Discord</Button>
 
                     </HStack>
-                    <Button colorScheme="brand" size="sm">
-                        Connect Wallet
-                    </Button>
+
+                    {myWeb3 !== undefined ? <button className=" btn-inner - text " onClick={disconnectWallet}> Disconnect </button> : <button className=" btn-inner - text " onClick={connectWallet}> Connect Wallet </button>}
+
                     <Box display={{ base: "inline-flex", md: "none" }}>
                         <IconButton
                             display={{ base: "flex", md: "none" }}
