@@ -37,6 +37,7 @@ export const Navbar = () => {
     const bg = useColorModeValue("white", "gray.800");
     const mobileNav = useDisclosure();
     return (
+        
         <chakra.header
             bg={bg}
             w="full"
@@ -68,7 +69,6 @@ export const Navbar = () => {
                     >
                         <Button variant="ghost">About</Button>
                         <Button variant="ghost">Discord</Button>
-
                     </HStack>
 
                     {myWeb3 !== undefined ? <button className=" btn-inner - text " onClick={disconnectWallet}> Disconnect </button> : <button className=" btn-inner - text " onClick={connectWallet}> Connect Wallet </button>}
