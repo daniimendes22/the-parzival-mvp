@@ -3,8 +3,13 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import Link from 'next/link'
+import React, { useState } from 'react';
+import Popup from 'reactjs-popup';
+import Modal from '../components/ui/popup/popup'
+import 'reactjs-popup/dist/index.css';
 
-export default function Projects({ projects }) {
+export default function Bio({ projects }) {
+    const [showModal, setShowModal] = useState(false);
     return (
         <div className="mt-5">
             {projects.map((post, index) => (
@@ -34,7 +39,17 @@ export default function Projects({ projects }) {
                     </div>
                 </Link>
             ))}
+            <Image
+                                    src="/images/qr1.png"
+                                    className="img-fluid mt-1 rounded-start"
+                                    alt="thumbnail"
+                                    width={200}
+                                    height={200}
+                                    objectFit="cover"
+            >
+            </Image>
         </div>
+
     )
 }
 
