@@ -25,18 +25,19 @@ export const Navbar = () => {
         >
             <Flex alignItems="center" justifyContent="space-between" mx="auto">
                 <Flex>
-                    <chakra.a
-                        href="/"
-                        title="Choc Home Page"
-                        display="flex"
-                        alignItems="center"
-                    >
-
-                        <VisuallyHidden>VINCI</VisuallyHidden>
-                    </chakra.a>
-                    <chakra.h1 fontSize="xl" fontWeight="medium" ml="2">
-                        <Image src='/images/LOGO.png' width="128" height="64"></Image>
-                    </chakra.h1>
+                    <Link href="/">
+                        <chakra.a
+                            href="/"
+                            title="Choc Home Page"
+                            display="flex"
+                            alignItems="center"
+                        >
+                            <VisuallyHidden>VINCI</VisuallyHidden>
+                            <chakra.h1 fontSize="xl" fontWeight="medium" ml="2">
+                                <Image src='/images/LOGO.png' width="128" height="64"></Image>
+                            </chakra.h1>
+                        </chakra.a>
+                    </Link>
                 </Flex>
                 <HStack display="flex" alignItems="center" spacing={1}>
                     <HStack

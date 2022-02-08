@@ -1,6 +1,11 @@
-import Image from 'next/image'
-export default function Home() {
+// ./pages/index.js
+import Head from 'next/head'
+
+export default function Home(props) {
   return (
-    <div></div>
+    <>
+      <Head>
+      </Head>
+    </>
   )
 }

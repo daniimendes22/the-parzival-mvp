@@ -3,8 +3,9 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import Link from 'next/link'
+import React from 'react';
 
-export default function Projects({ projects }) {
+export default function Bio({ projects }) {
     return (
         <div className="mt-5">
             {projects.map((post, index) => (
@@ -22,7 +23,7 @@ export default function Projects({ projects }) {
                             </div>
                             <div className="col-md-4 m-auto">
                                 <Image
-                                    src={post.frontMatter.thumbnailUrl}
+                                    src={'/images/'+ post.frontMatter.thumbnailUrl}
                                     className="img-fluid mt-1 rounded-start"
                                     alt="thumbnail"
                                     width={500}
@@ -34,7 +35,9 @@ export default function Projects({ projects }) {
                     </div>
                 </Link>
             ))}
+
         </div>
+
     )
 }
 
