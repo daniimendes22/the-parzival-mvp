@@ -1,0 +1,54 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Projects {
+  id          Int           @id @default(autoincrement())
+  name        String        @unique @db.VarChar(150)
+  createdAt   DateTime      @default(now()) @map("created_at")
+  updatedAt   DateTime      @updatedAt @map("updated_at")
+  fileMdx    String         @unique @db.VarChar(150)
+
+  @@map("projects")
+}
+
+model Project {
+  id          Int           @id @default(autoincrement())
+  name        String        @unique @db.VarChar(150)
+  createdAt   DateTime      @default(now()) @map("created_at")
+  updatedAt   DateTime      @updatedAt @map("updated_at")
+  ProjectSection ProjectSection[]
+
+  @@map("project")
+}
+
+model ProjectSection {
+  id        Int       @id @default(autoincrement())
+  name      String    @unique @db.VarChar(150)
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+  projectId           Int?
+  Project   Project?  @relation(fields: [projectId], references: [id])
+  SectionLesson       SectionLesson[]
+
+  @@index([projectId], map: "subProjects_projectId_fkey")
+  @@map("projectSection")
+}
+
+model SectionLesson {
+  id        Int       @id @default(autoincrement())
+  name      String    @unique @db.VarChar(150)
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+  projectSectionId    Int?
+  fileMdx   String    @unique @db.VarChar(150)
+  ProjectSection      ProjectSection? @relation(fields: [projectSectionId], references: [id])
+
+  @@index([projectSectionId], map: "sectionLesson_projectSectionId_fkey")
+  @@map("sectionLesson")
+}

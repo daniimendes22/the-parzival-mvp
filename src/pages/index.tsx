@@ -1,11 +1,11 @@
+// ./pages/index.js
+import Head from 'next/head'
 
-
-export default function HomePage() {
-
-    return (
-        <div>
-
-            <h1>Home Page</h1>
-        </div>
-    );
+export default function Home(props) {
+  return (
+    <>
+      <Head>
+      </Head>
+    </>
+  )
 }

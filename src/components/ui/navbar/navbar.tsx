@@ -3,39 +3,25 @@ import {
     Button,
     chakra, CloseButton, Flex,
     HStack, IconButton,
-    Link,
-    Stack,
     useColorModeValue,
     useDisclosure,
     VisuallyHidden, VStack
 } from "@chakra-ui/react";
 import { AiOutlineMenu } from "react-icons/ai";
-import { useEffect, useState } from "react";
-import wallet_model from '../../../pages/models/wallet_model';
-
+import { useState } from "react";
+import Image from 'next/image'
+import Link from 'next/link'
+import { useSession, signIn, signOut } from "next-auth/react"
+import Auth from '../auth/auth';
+import { useRouter } from "next/router";
 
 export const Navbar = () => {
-    const { web3Loading, getweb3 } = wallet_model();
-    const [myWeb3, setMyWeb3] = useState();
-    async function connectWallet() {
-        await getweb3().then((response) => {
-            setMyWeb3(response);
-            response.eth.getAccounts().then(async (result) => (
-                await fetch('/api/dbSaveUserWalletAPI', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(result[0]),
-                })
-            ));
-        });
-    };
-    async function disconnectWallet() {
-        setMyWeb3(undefined); console.log("result")
-    };
+    const router = useRouter();
+    const { data: session } = useSession();
     const bg = useColorModeValue("white", "gray.800");
     const mobileNav = useDisclosure();
+    let click = {};
+
     return (
         <chakra.header
             bg={bg}
@@ -46,18 +32,19 @@ export const Navbar = () => {
         >
             <Flex alignItems="center" justifyContent="space-between" mx="auto">
                 <Flex>
-                    <chakra.a
-                        href="/"
-                        title="Choc Home Page"
-                        display="flex"
-                        alignItems="center"
-                    >
-
-                        <VisuallyHidden>Logo</VisuallyHidden>
-                    </chakra.a>
-                    <chakra.h1 fontSize="xl" fontWeight="medium" ml="2">
-                        Logo
-                    </chakra.h1>
+                    <Link href="/">
+                        <chakra.a
+                            href="/"
+                            title="Choc Home Page"
+                            display="flex"
+                            alignItems="center"
+                        >
+                            <VisuallyHidden>VINCI</VisuallyHidden>
+                            <chakra.h1 fontSize="xl" fontWeight="medium" ml="2">
+                                <Image src='/images/LOGO.png' width="128" height="64"></Image>
+                            </chakra.h1>
+                        </chakra.a>
+                    </Link>
                 </Flex>
                 <HStack display="flex" alignItems="center" spacing={1}>
                     <HStack
@@ -66,12 +53,42 @@ export const Navbar = () => {
                         color="brand.500"
                         display={{ base: "none", md: "inline-flex" }}
                     >
-                        <Button variant="ghost">About</Button>
+                        {session ? (
+                            <div>
+                                <Button variant="ghost">
+                                    <Link href="/projects">
+                                        <a>Projects</a>
+                                    </Link>
+                                </Button>
+                            </div>
+                        ) : (
+                            <></>
+                        )}
+
+                        <Button variant="ghost">
+                            <Link href="/about">
+                                <a>About</a>
+                            </Link>
+                        </Button>
                         <Button variant="ghost">Discord</Button>
 
-                    </HStack>
+                        <Auth />
 
-                    {myWeb3 !== undefined ? <button className=" btn-inner - text " onClick={disconnectWallet}> Disconnect </button> : <button className=" btn-inner - text " onClick={connectWallet}> Connect Wallet </button>}
+                        <Box
+                            as='button'
+                            p={4}
+                            color='white'
+                            fontWeight='bold'
+                            borderRadius='md'
+                            bgGradient='linear(to-r, teal.500, green.500)'
+                            _hover={{
+                                bgGradient: 'linear(to-r, red.500, yellow.500)',
+                            }}
+                            onClick={() => router.push("https://lafamiglia.vinci.so/")}
+                        >
+                            La Famiglia
+                        </Box>
+                    </HStack>
 
                     <Box display={{ base: "inline-flex", md: "none" }}>
                         <IconButton
@@ -105,7 +122,10 @@ export const Navbar = () => {
                             />
 
                             <Button w="full" variant="ghost">
-                                About
+                                Projects
+                            </Button>
+                            <Button w="full" variant="ghost">
+                                Projects
                             </Button>
                             <Button w="full" variant="ghost">
                                 Discord
