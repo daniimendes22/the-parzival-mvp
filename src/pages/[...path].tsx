@@ -1,5 +1,7 @@
 import GetSitemapLinks from 'sitemap-links'
-import DynamicPath, { getStaticProps } from './index'
+import DynamicPath from './index'
+import { getStaticProps } from './projects'
+
 
 export default DynamicPath
 export { getStaticProps }
@@ -12,7 +14,7 @@ export async function getStaticPaths() {
   })
 
   // Extract paths from absolute links
-  const paths = []
+  const paths: any[] = []
   for (let link of links) {
     let url = new URL(link)
     const path = url.pathname.replace(`/`, ``).split(`/`)

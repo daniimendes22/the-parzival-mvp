@@ -5,6 +5,7 @@ description: Learn how to create and use functions
 thumbnailUrl: qr1.png
 qrCode: qr1.png
 tags: ["functions", "javascript"]
+poapLink:
 ---
 
 <div>
@@ -22,20 +23,12 @@ post.
   `}
 </SyntaxHighlighter>
 
-<div>
-  Here I'm using a component inside my MarkDown file:{" "}
-  {<Button text={"Click me"} />}
-</div>
-
-
 <Center>
-  <Image
-    src={"/images/qr1.png"}
-    className="img-fluid mt-1 rounded-start"
-    alt="thumbnail"
-    width={200}
-    height={200}
-    objectFit="cover" >
-  </Image>
+  <div>
+    <Button>
+      <a target="_blank" href={"https://poap.website/vinci"}>
+        Click this link
+      </a>
+    </Button>
+  </div>
 </Center>
-

@@ -1,7 +1,5 @@
 import NextAuth from 'next-auth'
-import { MongoDBAdapter } from '@next-auth/mongodb-adapter'
-import EmailProvider from 'next-auth/providers/email'
-import MongoClientPromise from '../../../lib/mongodb'
+import CognitoProvider from "next-auth/providers/cognito";
 
 const THIRTY_DAYS = 30 * 24 * 60 * 60
 const THIRTY_MINUTES = 30 * 60
@@ -13,18 +11,28 @@ export default NextAuth({
     maxAge: THIRTY_DAYS,
     updateAge: THIRTY_MINUTES
   },
-  adapter: MongoDBAdapter(MongoClientPromise),
   providers: [
-    EmailProvider({
-      server: {
-        host: process.env.EMAIL_SERVER_HOST,
-        port: process.env.EMAIL_SERVER_PORT,
-        auth: {
-          user: process.env.EMAIL_SERVER_USER,
-          pass: process.env.EMAIL_SERVER_PASSWORD
-        }
-      },
-      from: process.env.EMAIL_FROM
+    CognitoProvider({
+      clientId: process.env.COGNITO_CLIENT_ID,
+      clientSecret: process.env.COGNITO_CLIENT_SECRET,
+      issuer: process.env.COGNITO_ISSUER,
     })
-  ]
-})
+  ],
+  callbacks: {
+    async jwt(token, account) {
+      if (account?.accessToken) {
+        token.accessToken = account.accessToken
+      }
+      return token;
+    },
+    redirect: async (url, _baseUrl) => {
+      if (url === '/user') {
+        return Promise.resolve('/')
+      }
+      return Promise.resolve('/projects')
+    }
+  },
+    pages: {
+    signOut: '/dashboard',
+  },
+});

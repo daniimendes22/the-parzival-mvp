@@ -1,9 +1,11 @@
 import { ChakraProvider } from '@chakra-ui/react'
 import { AppProps } from "next/app";
 import { theme } from "../styles/theme";
+import "../styles/global.css";
+import "../styles/style.css";
 import Head from 'next/head';
 import { SessionProvider } from "next-auth/react"
-import Navbar from '../components/ui/navbar';
+import {Navbar} from '../components/ui/navbar/navbar';
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
     return (
@@ -15,8 +17,8 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
                     crossOrigin="anonymous" />
             </Head>
             <ChakraProvider theme={theme}>
-                <Navbar />
                 <SessionProvider session={session}>
+                    <Navbar />
                     <Component {...pageProps} />
                 </SessionProvider>
 
