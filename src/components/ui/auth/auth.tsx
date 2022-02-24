@@ -1,17 +1,21 @@
 import { useSession, signIn, signOut } from "next-auth/react"
+import ButtonLogin from "./button-login"
 
 export default function Auth() {
     const { data: session } = useSession()
     if (session) {
         return (
             <>
-                <button onClick={() => signOut({ callbackUrl: "/" })}>Sign out</button>
+
+                <ButtonLogin rootClassName="rootClassName2" button={"Sign Out"} onClick={() => signOut({ callbackUrl: "/" })}></ButtonLogin>
+                {/* <button >Sign out</button> */}
             </>
         )
     }
     return (
         <>
-            <button onClick={() => signIn()}>Sign in</button>
+            <ButtonLogin rootClassName="rootClassName2" button={"Sign in"} onClick={() => signIn()}></ButtonLogin>
+            {/* <button onClick={() => signIn()}>Sign in</button> */}
         </>
     )
 }
