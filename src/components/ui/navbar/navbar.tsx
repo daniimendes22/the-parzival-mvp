@@ -11,10 +11,17 @@ import { AiOutlineMenu } from "react-icons/ai";
 import { useState } from "react";
 import Image from 'next/image'
 import Link from 'next/link'
+import { useSession, signIn, signOut } from "next-auth/react"
+import Auth from '../auth/auth';
+import { useRouter } from "next/router";
 
 export const Navbar = () => {
+    const router = useRouter();
+    const { data: session } = useSession();
     const bg = useColorModeValue("white", "gray.800");
     const mobileNav = useDisclosure();
+    let click = {};
+
     return (
         <chakra.header
             bg={bg}
@@ -46,11 +53,18 @@ export const Navbar = () => {
                         color="brand.500"
                         display={{ base: "none", md: "inline-flex" }}
                     >
-                        <Button variant="ghost">
-                            <Link href="/projects">
-                                <a>Projects</a>
-                            </Link>
-                        </Button>
+                        {session ? (
+                            <div>
+                                <Button variant="ghost">
+                                    <Link href="/projects">
+                                        <a>Projects</a>
+                                    </Link>
+                                </Button>
+                            </div>
+                        ) : (
+                            <></>
+                        )}
+
                         <Button variant="ghost">
                             <Link href="/about">
                                 <a>About</a>
@@ -58,10 +72,24 @@ export const Navbar = () => {
                         </Button>
                         <Button variant="ghost">Discord</Button>
 
+                        <Auth />
+
+                        <Box
+                            as='button'
+                            p={4}
+                            color='white'
+                            fontWeight='bold'
+                            borderRadius='md'
+                            bgGradient='linear(to-r, teal.500, green.500)'
+                            _hover={{
+                                bgGradient: 'linear(to-r, red.500, yellow.500)',
+                            }}
+                            onClick={() => router.push("https://lafamiglia.vinci.so/")}
+                        >
+                            La Famiglia
+                        </Box>
                     </HStack>
 
-                    {/*  {myWeb3 !== undefined ? <button className=" btn-inner - text " onClick={disconnectWallet}> Disconnect </button> : <button className=" btn-inner - text " onClick={connectWallet}> Connect Wallet </button>}
-                        */}
                     <Box display={{ base: "inline-flex", md: "none" }}>
                         <IconButton
                             display={{ base: "flex", md: "none" }}
