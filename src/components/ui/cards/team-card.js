@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image'
 
 import PropTypes from 'prop-types'
 
@@ -11,7 +12,7 @@ const TeamCard = (props) => {
         </svg>
         <div className="testimonial">
           <span className="text">{props.quote}</span>
-          <img
+          <Image
             alt={props.picture_alt}
             src={props.picture_src}
             className="image"

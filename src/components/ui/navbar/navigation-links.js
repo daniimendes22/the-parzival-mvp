@@ -1,3 +1,5 @@
+
+import Link from 'next/link'
 import React from 'react'
 
 import { useSession } from 'next-auth/react'
@@ -9,25 +11,25 @@ const NavigationLinks = (props) => {
     <>
       <nav className={`nav ${props.rootClassName} `}>
 
-        <a href="/#about" >
+        <Link href="/#about" >
           <button className="button">{props.button21}</button>
-        </a>
-        <a href="/#roadmap" >
+        </Link>
+        <Link href="/#roadmap" >
           <button className="button1 button">{props.button211}</button>
-        </a>
-        <a href="/#team" >
+        </Link>
+        <Link href="/#team" >
           <button className="button2 button">{props.button2}</button>
-        </a>
+        </Link>
         {session ? (
           <div>
-            <a href="/projects">
+            <Link href="/projects">
               <button className="button3 button">{props.button3}</button>
-            </a>
+            </Link>
           </div>
         ) : (
           <></>
         )}
-        <a href="https://lafamiglia.vinci.so" target="_blank">
+        <a href="https://lafamiglia.vinci.so" target="_blank"  rel="noreferrer">
           <button className="button3 button">{props.button1}</button>
         </a>
 

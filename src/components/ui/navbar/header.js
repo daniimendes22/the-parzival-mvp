@@ -2,6 +2,7 @@ import React from 'react'
 
 import PropTypes from 'prop-types'
 import Link from 'next/link'
+import Image from 'next/image'
 
 import NavigationLinks from './navigation-links'
 import Auth from '../auth/auth'
@@ -48,9 +49,10 @@ const Header = (props) => {
         <div data-type="MobileMenu" className="mobile-menu">
           <div className="nav1">
             <div className="container1">
-              <img
+              <Image
                 alt={props.image_alt1}
                 src={props.image_src1}
+                layout='fill'
                 className="image1"
               />
               <div data-type="CloseMobileMenu" className="close-mobile-menu">
@@ -245,11 +247,11 @@ const Header = (props) => {
 }
 
 Header.defaultProps = {
-  image_src: 'https://presentation-website-assets.teleporthq.io/logos/logo.png',
+  image_src: '/images/LOGO.png',
   image_alt: 'logo',
   image_alt1: 'image',
   image_src1:
-    'https://presentation-website-assets.teleporthq.io/logos/logo.png',
+    '/images/LOGO.png',
 }
 
 Header.propTypes = {

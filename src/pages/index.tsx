@@ -47,9 +47,11 @@ export default function Home() {
             </span>
           </span>
         </div>
-        <img
+        <Image
           alt="image"
-          src="https://images.unsplash.com/photo-1525498128493-380d1990a112?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDI0fHxtaW5pbWFsaXNtJTIwZ3JlZW58ZW58MHx8fHwxNjI1ODQxMDcw&amp;ixlib=rb-1.2.1&amp;h=1200"
+          src="/images/LOGO.png"
+          height='1200'
+          width='1200'
           className="image"
         />
       </div>

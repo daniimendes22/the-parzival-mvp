@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image'
 
 import PropTypes from 'prop-types'
 
@@ -6,14 +7,14 @@ const ProjectCard = (props) => {
   return (
     <>
       <div className={`blog-post-card ${props.rootClassName} `}>
-        <img alt={props.image_alt} src={props.image_src} className="image" />
+        <Image alt={props.image_alt} src={props.image_src} className="image" />
         <div className="container">
           <span className="text">{props.label}</span>
           <span className="text1">{props.title}</span>
           <span className="text2">{props.description}</span>
           <div className="container1">
             <div className="profile">
-              <img
+              <Image
                 alt={props.profile_alt}
                 src={props.profile_src}
                 image_src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDd8fG1hbiUyMHBvcnRyYWl0fGVufDB8fHx8MTYyNjQzMTMwMw&amp;ixlib=rb-1.2.1&amp;h=1200"
