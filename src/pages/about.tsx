@@ -1,7 +1,7 @@
 import React from 'react'
 import Head from 'next/head'
 
-import TestimonialCard3 from '../components/ui/team/teamCard'
+import TestimonialCard3 from '../components/ui/team/team'
 
 const About = () => {
   return (
@@ -105,24 +105,7 @@ const About = () => {
             </span>
           </span>
           <div className="container2">
-            <TestimonialCard3
-              picture_src="https://images.unsplash.com/photo-1583195764036-6dc248ac07d9?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDE2fHxtYW58ZW58MHx8fHwxNjI2NDUyMDM1&amp;ixlib=rb-1.2.1&amp;h=1200"
-              rootClassName="rootClassName"
-            ></TestimonialCard3>
-            <TestimonialCard3
-              picture_src="https://images.unsplash.com/photo-1566492031773-4f4e44671857?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDIzfHxtYW58ZW58MHx8fHwxNjI2NDUyMDM1&amp;ixlib=rb-1.2.1&amp;h=1200"
-              rootClassName="rootClassName"
-            ></TestimonialCard3>
-            <TestimonialCard3
-              picture_src="https://images.unsplash.com/photo-1546456073-ea246a7bd25f?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDh8fGJsYWNrJTIwbWFufGVufDB8fHx8MTYyNjQ1MjAwOA&amp;ixlib=rb-1.2.1&amp;h=1200"
-              rootClassName="rootClassName"
-            ></TestimonialCard3>
-          </div>
-          <div className="container3">
-            <TestimonialCard3
-              picture_src="https://images.unsplash.com/photo-1566492031773-4f4e44671857?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDIzfHxtYW58ZW58MHx8fHwxNjI2NDUyMDM1&amp;ixlib=rb-1.2.1&amp;h=1200"
-              rootClassName="rootClassName2"
-            ></TestimonialCard3>
+            
           </div>
         </div>
       </div>
