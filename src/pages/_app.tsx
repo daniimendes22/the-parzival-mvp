@@ -52,7 +52,6 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
             </ChakraProvider>
             {showButton && (
                 <button onClick={scrollToTop} className="back-to-top">
-                    &#8679;
                 </button>
             )}
             <style jsx>

@@ -7,12 +7,11 @@ export default function Home() {
     <>
       <div className="hero">
         <div className="container01">
-          <h1 className="text">Magnificent things are very simple</h1>
+          <h1 className="text">Onboarding the next generation of content creators</h1>
           <span className="text01">
             <span>
               <span>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                non volutpat turpis.
+              Be part of a community of like-minded creators helping and growing together. Learn by doing.
                 <span
                   dangerouslySetInnerHTML={{
                     __html: ' ',
@@ -29,8 +28,7 @@ export default function Home() {
             </span>
             <span>
               <span>
-                Mauris luctus rutrum mi ut rhoncus. Integer in dignissim
-                tortor.
+                
                 <span
                   dangerouslySetInnerHTML={{
                     __html: ' ',
@@ -49,8 +47,8 @@ export default function Home() {
         </div>
         <Image
           alt="image"
-          src="/images/LOGO.png"
-          height='1200'
+          src="/images/main_page/vinci_home_page.png"
+          height='800'
           width='1200'
           className="image"
         />

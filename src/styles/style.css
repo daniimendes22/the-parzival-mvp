@@ -191,16 +191,23 @@
   position: fixed;
   bottom: 20px;
   right: 20px;
-  font-size: 100px;
-  background: orange;
+  font-size: 40px;
+  height: 30px;
+  width: 30px;
+  background: black;
   color: white;
   cursor: pointer;
-  border-radius: 100px;
+  border-radius: 50%;
   border: none;
-  box-shadow: 0 5px 10px #ccc;
+  box-shadow: 5px 5px 10px #ccc;
+}
+
+.back-to-top-arrow{
+  margin-bottom: 100px;
+  top: 10px;
 }
 
 .back-to-top:hover {
-  background: red;
+  background: darkgray;
 }
 

@@ -52,7 +52,6 @@ export default function Projects({ projects }) {
                                 author={post.frontMatter.author}
                                 profile_src={post.frontMatter.authorPic}
                                 label={post.frontMatter.topic}
-
                             ></ProjectCard>
                         </div>
                     </Link>
