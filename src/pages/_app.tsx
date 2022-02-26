@@ -8,7 +8,11 @@ import Footer from "../components/ui/footer/footer";
 import { SessionProvider } from "next-auth/react"
 import "../styles/style.css"
 
+const dev = process.env.NODE_ENV !== 'production';
+export const server = dev ? 'http://localhost:3000' : 'https://alpha.vinci.so';
+
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
+
     const [showButton, setShowButton] = useState(false);
 
     useEffect(() => {
