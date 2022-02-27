@@ -5,11 +5,19 @@ import matter from 'gray-matter'
 import Link from 'next/link'
 
 import ProjectCard from '../components/ui/cards/project-card'
+import {
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+  AccordionIcon,
+  Box 
+} from '@chakra-ui/react'
 
 export default function Projects({ projects }) {
-    return (
-        <>
-            {/* <div className="mt-5">
+  return (
+    <>
+      {/* <div className="mt-5">
                 {projects.map((post, index) => (
                     <Link href={'/projects/' + post.slug} passHref key={index}>
                         <div className="card mb-3 pointer" style={{ maxWidth: '540px' }}>
@@ -39,26 +47,26 @@ export default function Projects({ projects }) {
                 ))}
                 </div> */}
 
-            <div className="blog">
-                {projects.map((post, index) => (
+      <div className="blog">
+        {projects.map((post, index) => (
 
-                    <Link href={'/projects/' + post.slug} passHref key={index}>
-                        <div className="project-card">
-                            <ProjectCard
-                                image_src={post.frontMatter.thumbnailUrl}
-                                rootClassName="rootClassName3"
-                                description={post.frontMatter.description}
-                                title={post.frontMatter.title}
-                                author={post.frontMatter.author}
-                                profile_src={post.frontMatter.authorPic}
-                                label={post.frontMatter.topic}
-                            ></ProjectCard>
-                        </div>
-                    </Link>
-                ))}
+          <Link href={'/projects/' + post.slug} passHref key={index}>
+            <div className="project-card">
+              <ProjectCard
+                image_src={post.frontMatter.thumbnailUrl}
+                rootClassName="rootClassName3"
+                description={post.frontMatter.description}
+                title={post.frontMatter.title}
+                author={post.frontMatter.author}
+                profile_src={post.frontMatter.authorPic}
+                label={post.frontMatter.topic}
+              ></ProjectCard>
             </div>
-            <style jsx>
-                {`
+          </Link>
+        ))}
+      </div>
+      <style jsx>
+        {`
           .image {
             height: 2rem;
             object-fit: cover;
@@ -246,24 +254,24 @@ export default function Projects({ projects }) {
             }
           }
         `}
-            </style>
-        </>
-    )
+      </style>
+    </>
+  )
 }
 
 export const getStaticProps = async () => {
-    const files = fs.readdirSync(`${process.cwd()}/src/projects`, 'utf-8');
-    const projects = files.map(filename => {
-        const markdownWithMeta = fs.readFileSync(path.join(`${process.cwd()}/src/projects`, filename), 'utf-8')
-        const { data: frontMatter } = matter(markdownWithMeta)
-        return {
-            frontMatter,
-            slug: filename.split('.')[0]
-        }
-    })
+  const files = fs.readdirSync(`${process.cwd()}/src/projects`, 'utf-8');
+  const projects = files.map(filename => {
+    const markdownWithMeta = fs.readFileSync(path.join(`${process.cwd()}/src/projects`, filename), 'utf-8')
+    const { data: frontMatter } = matter(markdownWithMeta)
     return {
-        props: {
-            projects
-        }
+      frontMatter,
+      slug: filename.split('.')[0]
     }
+  })
+  return {
+    props: {
+      projects
+    }
+  }
 }

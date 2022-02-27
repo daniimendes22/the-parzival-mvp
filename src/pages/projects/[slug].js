@@ -10,7 +10,7 @@ import buttonHref from '../../components/ui/buttons/buttonHref'
 import Link from 'next/link'
 import styles from '../../styles/blogPost.module.css'
 
-const components = { buttonHref, Center, Image, SyntaxHighlighter, Link }
+const components = {  }
 
 const PostPage = ({ frontMatter: { title, date, qrCode }, mdxSource }) => {
   return (
@@ -54,7 +54,7 @@ const PostPage = ({ frontMatter: { title, date, qrCode }, mdxSource }) => {
         </div>
         <div className="container02">
           <div className='story'>
-            <MDXRemote {...mdxSource} components={{ ...components }} />
+            <MDXRemote {...mdxSource} components={{ buttonHref, Center, Image, SyntaxHighlighter, Link }} />
           </div>
         </div>
       </div>
@@ -71,6 +71,7 @@ const PostPage = ({ frontMatter: { title, date, qrCode }, mdxSource }) => {
         .hero {
           flex: 0 0 auto;
           width: 100%;
+          heigth: 100%;
           display: flex;
           position: relative;
           min-height: 75vh;
@@ -78,7 +79,7 @@ const PostPage = ({ frontMatter: { title, date, qrCode }, mdxSource }) => {
           flex-direction: column;
           background-size: cover;
           justify-content: flex-start;
-          background-image: url('/images/playground_assets/photo-1-1500h.jpg');
+          background-image: url('/images/project-image/twitter/twitter-choose-name.png');
         }
         .fixed-header {
           width: 100%;
@@ -622,6 +623,7 @@ const PostPage = ({ frontMatter: { title, date, qrCode }, mdxSource }) => {
 }
 
 const getStaticPaths = async () => {
+  console.log("ola")
   const files = fs.readdirSync(`${process.cwd()}/src/projects`);
 
   const paths = files.map(filename => ({
@@ -637,11 +639,16 @@ const getStaticPaths = async () => {
 }
 
 const getStaticProps = async ({ params: { slug } }) => {
+  console.log("ola")
   const markdownWithMeta = fs.readFileSync(`${process.cwd()}/src/projects/` +
     slug + '.mdx', 'utf-8')
 
+    console.log(markdownWithMeta)
   const { data: frontMatter, content } = matter(markdownWithMeta);
+  
+  console.log(content)
   const mdxSource = await serialize(content);
+  console.log(mdxSource)
 
   return {
     props: {

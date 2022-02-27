@@ -7,7 +7,7 @@ const ProjectCard = (props) => {
   return (
     <>
       <div className={`blog-post-card ${props.rootClassName} `}>
-        <Image height='200px' width='300px' alt={props.image_alt} src={props.image_src} className="image" />
+        <Image height='500px' width='500px' alt={props.image_alt} src={props.image_src} className="image" />
         <div className="container">
           <span className="text">{props.label}</span>
           <span className="text1">{props.title}</span>
@@ -23,7 +23,7 @@ const ProjectCard = (props) => {
               />
               <span className="text3">{props.author}</span>
             </div>
-            <span className="text4">{props.time}</span>
+            {/* <span className="text4">{props.time}</span> */}
           </div>
         </div>
       </div>
@@ -34,7 +34,8 @@ const ProjectCard = (props) => {
             cursor: pointer;
             display: flex;
             overflow: hidden;
-            max-width: var(--dl-size-size-maxwidth);
+            width: 350px;
+            height: 500px;
             box-shadow: 10px 10px 10px 5px rgba(63, 63, 63, 0.1);
             transition: 0.3s;
             align-items: center;
@@ -46,12 +47,13 @@ const ProjectCard = (props) => {
             transform: scale(1.02);
           }
           .image {
-            object-fit: cover;
+            width: 100%;
             border-radius: var(--dl-radius-radius-radius8);
             border-bottom-left-radius: 0;
             border-bottom-right-radius: 0;
           }
           .container {
+            width: 100%;
             display: flex;
             padding: var(--dl-space-space-twounits);
             align-items: flex-start;
@@ -145,6 +147,13 @@ const ProjectCard = (props) => {
             .image {
               height: 350px;
             }
+          }
+          @media (max-width: 500px) {
+            
+          .blog-post-card {
+            width: 250px;
+            height: 500px;
+          }
           }
         `}
       </style>
